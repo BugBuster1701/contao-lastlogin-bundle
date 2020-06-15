@@ -18,7 +18,7 @@ namespace BugBuster\LastLogin;
 /**
  * Class LastLogin
  * 
- * From TL 2.8 you can use prefix "cache_". The InserTag will be not cached nows. (when "cache" is enabled)
+ * You can use prefix "cache_". The InserTag will be not cached nows. (when "cache" is enabled)
  * 
  * Last Login:
  * {{cache_last_login}}
@@ -34,9 +34,6 @@ namespace BugBuster\LastLogin;
  * 
  * Display number of offline members (logout today)
  * {{cache_last_login_number_offline_members}}
- * 
- * @copyright  Glen Langer 2013 <https://contao.ninja>
- * @author     Glen Langer (BugBuster)
  */
 class LastLogin extends \Frontend
 {
@@ -51,12 +48,6 @@ class LastLogin extends \Frontend
      * @var bool
      */
     private $login_check = false;
-
-    /**
-     * SQL part for avatar extension
-     * @var string
-     */
-    private $avatar = '';
 
     /**
      * LastLogin Replace Insert-Tag Main Methode
@@ -86,19 +77,19 @@ class LastLogin extends \Frontend
         {
             case "last_login":
             case "cache_last_login":
-                return $this->LL_last_login();
+                return $this->getLastLogin();
                 break;
             case "last_login_number_registered_members":
             case "cache_last_login_number_registered_members":
-                return $this->LL_last_login_number_registered_members();
+                return $this->getLastLoginNumberRegisteredMembers();
                 break;
             case "last_login_number_online_members":
             case "cache_last_login_number_online_members":
-                return $this->LL_last_login_number_online_members();
+                return $this->getLastLoginNumberOnlineMembers();
                 break;
             case "last_login_number_offline_members":
             case "cache_last_login_number_offline_members":
-                return $this->LL_last_login_number_offline_members();
+                return $this->getLastLoginNumberOfflineMembers();
                 break;
             default:
                 //not for me
@@ -111,7 +102,7 @@ class LastLogin extends \Frontend
      * @return mixed false: FE user not logged in
      *               string: return value of the Insert-Tag
      */
-    private function LL_last_login()
+    private function getLastLogin()
     {
         //member last login
         // {{cache_last_login}}
@@ -178,9 +169,8 @@ class LastLogin extends \Frontend
      * Insert-Tag: Last Login Number Registered Members (aktiv, login allowed)
      * @return integer number of registered members
      */
-    private function LL_last_login_number_registered_members()
+    private function getLastLoginNumberRegisteredMembers()
     {
-        //number of registered members
         $objLogin = \Database::getInstance()
                         ->prepare("SELECT 
                                         count(`id`) AS ANZ 
@@ -201,7 +191,7 @@ class LastLogin extends \Frontend
      * Insert-Tag: Last Login Number Online Members
      * @return integer number of online members
      */
-    private function LL_last_login_number_online_members()
+    private function getLastLoginNumberOnlineMembers()
     {
         //number of online members
         // alle die eine zeitlich gueltige Session haben
@@ -234,7 +224,7 @@ class LastLogin extends \Frontend
      * Insert-Tag: Last Login Number Offline Members
      * @return integer number of offline members
      */
-    private function LL_last_login_number_offline_members()
+    private function getLastLoginNumberOfflineMembers()
     {
         //number of offline members
         //die heute einmal Online waren und jetzt Offline sind (inaktiv oder heute abgemeldet)
