@@ -1,0 +1,46 @@
+{
+	"name":"bugbuster/contao-lastlogin-bundle",
+	"description":"Contao 4 bundle, LastLogin and MembersOnline",
+	"keywords":["contao","bundle","lastlogin","membersonline","login","members"],
+	"type":"contao-bundle",
+	"homepage":"https://contao.ninja",
+	"license":"LGPL-3.0-or-later",
+	"authors":[
+		{
+			"name":"Glen Langer",
+			"homepage":"https://contao.ninja",
+			"role":"Developer"
+		}
+	],
+	"support":{
+		"issues":"https://github.com/BugBuster1701/contao-lastlogin-bundle/issues",
+		"source":"https://github.com/BugBuster1701/contao-lastlogin-bundle",
+		"wiki":"http://de.contaowiki.org/LastLogin",
+		"forum":"https://community.contao.org/de/forumdisplay.php?119-Sonstige-Erweiterungen"
+	},
+	"require":{
+		"php": "^7.1",
+		"contao/core-bundle": "4.4.*"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.0",
+        "friendsofphp/php-cs-fixer": "^2.12"
+    },
+	"autoload":{
+        "psr-4": {
+            "BugBuster\\LastloginBundle\\": "src/"
+        },
+        "classmap": [
+            "src/Resources/contao/"
+        ],
+        "exclude-from-classmap": [
+            "src/Resources/contao/config/",
+            "src/Resources/contao/dca/",
+            "src/Resources/contao/languages/",
+            "src/Resources/contao/templates/"
+        ]
+    },  
+	"extra":{
+        "contao-manager-plugin": "BugBuster\\LastloginBundle\\ContaoManager\\Plugin"
+	}
+}
