@@ -278,7 +278,7 @@ class LastLogin extends \Frontend
                                             )
                                         )
                                     ")
-                        ->execute(1, 1, time() - $GLOBALS['TL_CONFIG']['sessionTimeout'], 'FE_USER_AUTH', mktime(0, 0, 0, date("m"), date("d"), date("Y")), 'FE_USER_AUTH'
+                        ->execute(1, 1, time() - (int) $GLOBALS['TL_CONFIG']['sessionTimeout'], 'FE_USER_AUTH', mktime(0, 0, 0, (int) date("m"), (int) date("d"), (int) date("Y")), 'FE_USER_AUTH'
                                );
         $NumberMembersOffline = $objUsers->ANZ;
 
