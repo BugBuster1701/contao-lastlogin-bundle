@@ -17,7 +17,7 @@ namespace BugBuster\LastloginBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Configures the Contao xing bundle.
+ * Configures the Contao LastLogin bundle.
  */
 class BugBusterLastloginBundle extends Bundle
 {
