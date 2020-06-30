@@ -30,7 +30,7 @@ class Plugin implements BundlePluginInterface
     {
         return [
             BundleConfig::create('BugBuster\LastloginBundle\BugBusterLastloginBundle')
-                ->setLoadAfter(['Contao\CoreBundle\ContaoCoreBundle'])
+                ->setLoadAfter(['Contao\CoreBundle\ContaoCoreBundle', 'BugBuster\OnlineBundle\BugBusterOnlineBundle'])
                 ->setReplace(['lastlogin']),
         ];
     }

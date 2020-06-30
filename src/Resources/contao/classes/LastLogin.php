@@ -200,7 +200,7 @@ class LastLogin extends \Frontend
                                         count(DISTINCT username) AS ANZ 
                                    FROM 
                                         tl_member tlm, 
-                                        tl_session tls
+                                        tl_online_session tls
                                    WHERE 
                                         tlm.id=tls.pid 
                                    AND 
@@ -209,7 +209,7 @@ class LastLogin extends \Frontend
                                         tls.name = ?
                                 ")
                         ->limit(1)
-                        ->execute(time() - $GLOBALS['TL_CONFIG']['sessionTimeout'], 'FE_USER_AUTH');
+                        ->execute(time() - (int) $GLOBALS['TL_CONFIG']['sessionTimeout'], 'FE_USER_AUTH');
         if ($objUsers->numRows < 1) 
         {
             $NumberMembersOnline = 0;
@@ -250,7 +250,7 @@ class LastLogin extends \Frontend
                                             " . $llmo . "
                                         FROM 
                                             tl_member tlm, 
-                                            tl_session tls 
+                                            tl_online_session tls 
                                         WHERE 
                                             tlm.id=tls.pid 
                                         AND 
@@ -272,7 +272,7 @@ class LastLogin extends \Frontend
                                             (
                                             SELECT DISTINCT pid AS id 
                                             FROM 
-                                                tl_session
+                                                tl_online_session
                                             WHERE 
                                                 name = ?
                                             )
