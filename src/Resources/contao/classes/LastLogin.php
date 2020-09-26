@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of a BugBuster Contao Bundle
  *
@@ -146,9 +148,9 @@ class LastLogin extends \Frontend
                 }
 
                 // Auswertung
-                if ($objLogin->lastLogin > 0) 
+                if ((int) $objLogin->lastLogin > 0) 
                 {
-                    $strDate = date($strDateFormat, $objLogin->lastLogin);
+                    $strDate = date($strDateFormat, (int) $objLogin->lastLogin);
                 } // first login
                 elseif ($zero) 
                 {
@@ -167,9 +169,9 @@ class LastLogin extends \Frontend
 
     /**
      * Insert-Tag: Last Login Number Registered Members (aktiv, login allowed)
-     * @return integer number of registered members
+     * @return string number of registered members
      */
-    private function getLastLoginNumberRegisteredMembers()
+    private function getLastLoginNumberRegisteredMembers() : string
     {
         $objLogin = \Database::getInstance()
                         ->prepare("SELECT 
@@ -189,9 +191,9 @@ class LastLogin extends \Frontend
 
     /**
      * Insert-Tag: Last Login Number Online Members
-     * @return integer number of online members
+     * @return string number of online members
      */
-    private function getLastLoginNumberOnlineMembers()
+    private function getLastLoginNumberOnlineMembers() : string
     {
         //number of online members
         // alle die eine zeitlich gueltige Session haben
@@ -222,9 +224,9 @@ class LastLogin extends \Frontend
 
     /**
      * Insert-Tag: Last Login Number Offline Members
-     * @return integer number of offline members
+     * @return string number of offline members
      */
-    private function getLastLoginNumberOfflineMembers()
+    private function getLastLoginNumberOfflineMembers() : string
     {
         //number of offline members
         //die heute einmal Online waren und jetzt Offline sind (inaktiv oder heute abgemeldet)
