@@ -5,7 +5,7 @@ declare(strict_types=1);
 /**
  * This file is part of a BugBuster Contao Bundle
  *
- * @copyright  Glen Langer 2020 <https://contao.ninja>
+ * @copyright  Glen Langer 2022 <https://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @license    LGPL-3.0-or-later
  * @see	       https://github.com/BugBuster1701/contao-lastlogin-bundle
@@ -164,6 +164,7 @@ class LastLogin extends \Frontend
                 return $strDate;
             } //$this->User->id
         } //FE_USER_LOGGED_IN
+
         return false;
     }
 
@@ -171,7 +172,7 @@ class LastLogin extends \Frontend
      * Insert-Tag: Last Login Number Registered Members (aktiv, login allowed)
      * @return string number of registered members
      */
-    private function getLastLoginNumberRegisteredMembers() : string
+    private function getLastLoginNumberRegisteredMembers(): string
     {
         $objLogin = \Database::getInstance()
                         ->prepare("SELECT 
@@ -193,7 +194,7 @@ class LastLogin extends \Frontend
      * Insert-Tag: Last Login Number Online Members
      * @return string number of online members
      */
-    private function getLastLoginNumberOnlineMembers() : string
+    private function getLastLoginNumberOnlineMembers(): string
     {
         //number of online members
         // alle die eine zeitlich gueltige Session haben
@@ -226,7 +227,7 @@ class LastLogin extends \Frontend
      * Insert-Tag: Last Login Number Offline Members
      * @return string number of offline members
      */
-    private function getLastLoginNumberOfflineMembers() : string
+    private function getLastLoginNumberOfflineMembers(): string
     {
         //number of offline members
         //die heute einmal Online waren und jetzt Offline sind (inaktiv oder heute abgemeldet)
@@ -280,8 +281,14 @@ class LastLogin extends \Frontend
                                             )
                                         )
                                     ")
-                        ->execute(1, 1, time() - (int) $GLOBALS['TL_CONFIG']['sessionTimeout'], 'FE_USER_AUTH', mktime(0, 0, 0, (int) date("m"), (int) date("d"), (int) date("Y")), 'FE_USER_AUTH'
-                               );
+                        ->execute(
+                            1,
+                            1,
+                            time() - (int) $GLOBALS['TL_CONFIG']['sessionTimeout'],
+                            'FE_USER_AUTH',
+                            mktime(0, 0, 0, (int) date("m"), (int) date("d"), (int) date("Y")),
+                            'FE_USER_AUTH'
+                        );
         $NumberMembersOffline = $objUsers->ANZ;
 
         return $NumberMembersOffline;

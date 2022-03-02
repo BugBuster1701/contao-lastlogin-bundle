@@ -3,7 +3,7 @@
 /**
  * This file is part of a BugBuster Contao Bundle
  * 
- * @copyright  Glen Langer 2020 <https://contao.ninja>
+ * @copyright  Glen Langer 2022 <https://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @license    LGPL-3.0-or-later
  * @see	       https://github.com/BugBuster1701/contao-lastlogin-bundle
