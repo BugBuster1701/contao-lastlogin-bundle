@@ -209,7 +209,7 @@ class LastLogin extends \Frontend
                                    AND 
                                         tls.tstamp > ? 
                                    AND 
-                                        tls.name = ?
+                                        tls.instanceof  = ?
                                 ")
                         ->limit(1)
                         ->execute(time() - (int) $GLOBALS['TL_CONFIG']['sessionTimeout'], 'FE_USER_AUTH');
@@ -259,7 +259,7 @@ class LastLogin extends \Frontend
                                         AND 
                                             tls.tstamp > ? 
                                         AND 
-                                            tls.name = ?
+                                            tls.instanceof  = ?
                                         )
                                    AND 
                                         " . $llmo . "  NOT IN 
@@ -277,7 +277,7 @@ class LastLogin extends \Frontend
                                             FROM 
                                                 tl_online_session
                                             WHERE 
-                                                name = ?
+                                                instanceof  = ?
                                             )
                                         )
                                     ")

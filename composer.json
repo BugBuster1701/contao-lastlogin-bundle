@@ -28,7 +28,7 @@
 	"require": {
 		"php": "^7.4 || ^8.0",
 		"contao/core-bundle": "^4.13",
-		"bugbuster/contao-online-bundle": "^1.1"
+		"bugbuster/contao-online-bundle": "^1.2"
 	},
 	"require-dev": {
 		"contao/manager-plugin": "^2.0",
