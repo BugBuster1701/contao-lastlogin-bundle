@@ -55,7 +55,7 @@ class LastLogin extends \Frontend
      * LastLogin Replace Insert-Tag Main Methode
      * @param  string $strTag
      * @return mixed  false: no correct tag
-     *                       string: return value of the Insert-Tag
+     *                       int: return value of the Insert-Tag
      */
     public function ReplaceInsertTagsLastLogin($strTag)
     {
@@ -170,9 +170,9 @@ class LastLogin extends \Frontend
 
     /**
      * Insert-Tag: Last Login Number Registered Members (aktiv, login allowed)
-     * @return string number of registered members
+     * @return int number of registered members
      */
-    private function getLastLoginNumberRegisteredMembers(): string
+    private function getLastLoginNumberRegisteredMembers(): int
     {
         $objLogin = \Database::getInstance()
                         ->prepare("SELECT 
@@ -187,14 +187,14 @@ class LastLogin extends \Frontend
                         ->limit(1)
                         ->execute(1, 1);
 
-        return $objLogin->ANZ;
+        return (int) $objLogin->ANZ;
     }
 
     /**
      * Insert-Tag: Last Login Number Online Members
-     * @return string number of online members
+     * @return int number of online members
      */
-    private function getLastLoginNumberOnlineMembers(): string
+    private function getLastLoginNumberOnlineMembers(): int
     {
         //number of online members
         // alle die eine zeitlich gueltige Session haben
@@ -220,14 +220,14 @@ class LastLogin extends \Frontend
             $NumberMembersOnline = $objUsers->ANZ;
         }
 
-        return $NumberMembersOnline;
+        return (int) $NumberMembersOnline;
     }
 
     /**
      * Insert-Tag: Last Login Number Offline Members
-     * @return string number of offline members
+     * @return int number of offline members
      */
-    private function getLastLoginNumberOfflineMembers(): string
+    private function getLastLoginNumberOfflineMembers(): int
     {
         //number of offline members
         //die heute einmal Online waren und jetzt Offline sind (inaktiv oder heute abgemeldet)
@@ -291,7 +291,7 @@ class LastLogin extends \Frontend
                         );
         $NumberMembersOffline = $objUsers->ANZ;
 
-        return $NumberMembersOffline;
+        return (int) $NumberMembersOffline;
     }
 
 } // class
