@@ -2,17 +2,14 @@
 
 declare(strict_types=1);
 
-/**
- * This file is part of a BugBuster Contao Bundle
+/*
+ * This file is part of a BugBuster Contao Bundle (Resources\contao)
  *
- * @copyright  Glen Langer 2022 <https://contao.ninja>
+ * @copyright  Glen Langer 2023 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
+ * @package    Lastlogin
  * @license    LGPL-3.0-or-later
- * @see	       https://github.com/BugBuster1701/contao-lastlogin-bundle
- */
-
-/**
- * Run in a custom namespace, so the class can be replaced
+ * @see        https://github.com/BugBuster1701/contao-lastlogin-bundle
  */
 
 namespace BugBuster\LastLogin;
@@ -37,7 +34,7 @@ namespace BugBuster\LastLogin;
  * Display number of offline members (logout today)
  * {{cache_last_login_number_offline_members}}
  */
-class LastLogin extends \Frontend
+class LastLogin extends \Contao\Frontend
 {
     /**
      * Array with splitted Tag parts
@@ -49,7 +46,7 @@ class LastLogin extends \Frontend
      * Login check needed
      * @var bool
      */
-    private $login_check = false;
+    // private $login_check = false;
 
     /**
      * LastLogin Replace Insert-Tag Main Methode
@@ -59,22 +56,16 @@ class LastLogin extends \Frontend
      */
     public function ReplaceInsertTagsLastLogin($strTag)
     {
-        if (\defined('FE_USER_LOGGED_IN'))
-        {
-            if (true === FE_USER_LOGGED_IN) {
-                $this->login_check = true;
-            }	
-        } 
-        else 
-        {
-            if (isset($GLOBALS['TL_CONFIG']['mod_lastlogin_login_check']) &&
-                      $GLOBALS['TL_CONFIG']['mod_lastlogin_login_check'] === false) 
-            {
-                $this->login_check = true;
-            }
-        }
+        // if (true === \Contao\System::getContainer()->get('contao.security.token_checker')->hasFrontendUser()) {
+        //     $this->login_check = true;
+        // }	
+        // if (isset($GLOBALS['TL_CONFIG']['mod_lastlogin_login_check']) &&
+        //           $GLOBALS['TL_CONFIG']['mod_lastlogin_login_check'] === false) 
+        // {
+        //     $this->login_check = true;
+        // }
 
-        $this->arrTag = \StringUtil::trimsplit('::', $strTag);
+        $this->arrTag = \Contao\StringUtil::trimsplit('::', $strTag);
         switch ($this->arrTag[0]) 
         {
             case "last_login":
@@ -111,15 +102,15 @@ class LastLogin extends \Frontend
         // {{cache_last_login::d.m.Y}}
         // {{cache_last_login::zero}}
         // {{cache_last_login::zero::d.m.Y}}
-        if (FE_USER_LOGGED_IN) 
+        if (\Contao\System::getContainer()->get('contao.security.token_checker')->hasFrontendUser()) 
         {
-            $this->import('FrontendUser', 'User');
+            $this->import('\Contao\FrontendUser', 'User');
             $strDate = '';
             $zero = false;
             $strDateFormat = $GLOBALS['TL_CONFIG']['dateFormat'];
             if ($this->User->id !== null) 
             {
-                $objLogin = \Database::getInstance()
+                $objLogin = \Contao\Database::getInstance()
                                 ->prepare("SELECT 
                                                 lastLogin 
                                             FROM 
@@ -165,7 +156,7 @@ class LastLogin extends \Frontend
             } //$this->User->id
         } //FE_USER_LOGGED_IN
 
-        return false;
+        return '';
     }
 
     /**
@@ -174,7 +165,7 @@ class LastLogin extends \Frontend
      */
     private function getLastLoginNumberRegisteredMembers(): int
     {
-        $objLogin = \Database::getInstance()
+        $objLogin = \Contao\Database::getInstance()
                         ->prepare("SELECT 
                                         count(`id`) AS ANZ 
                                     FROM 
@@ -196,9 +187,11 @@ class LastLogin extends \Frontend
      */
     private function getLastLoginNumberOnlineMembers(): int
     {
+        //$timeout = (int) ($this->sessionStorageOptions['gc_maxlifetime'] ?? \ini_get('session.gc_maxlifetime'));
+        $timeout = (int) \ini_get('session.gc_maxlifetime');
         //number of online members
         // alle die eine zeitlich gueltige Session haben
-        $objUsers = \Database::getInstance()
+        $objUsers = \Contao\Database::getInstance()
                         ->prepare("SELECT 
                                         count(DISTINCT username) AS ANZ 
                                    FROM 
@@ -212,7 +205,8 @@ class LastLogin extends \Frontend
                                         tls.instanceof  = ?
                                 ")
                         ->limit(1)
-                        ->execute(time() - (int) $GLOBALS['TL_CONFIG']['sessionTimeout'], 'FE_USER_AUTH');
+                        ->execute((time() - $timeout), 'FE_USER_AUTH');
+
         if ($objUsers->numRows < 1) 
         {
             $NumberMembersOnline = 0;
@@ -229,6 +223,8 @@ class LastLogin extends \Frontend
      */
     private function getLastLoginNumberOfflineMembers(): int
     {
+        //$timeout = (int) ($this->sessionStorageOptions['gc_maxlifetime'] ?? \ini_get('session.gc_maxlifetime'));
+        $timeout = (int) \ini_get('session.gc_maxlifetime');
         //number of offline members
         //die heute einmal Online waren und jetzt Offline sind (inaktiv oder heute abgemeldet)
         //$llmo_name = 'tlm.username as name';
@@ -237,7 +233,7 @@ class LastLogin extends \Frontend
         // abzueglich alle die eine zeitlich gueltige Session haben (online aktiv)
         // abzueglich gestern oder aelter angemeldet und wieder abgemeldet (ohne Session)
         // = offline members (lange inaktiv oder heute abgemeldet) 
-        $objUsers = \Database::getInstance()
+        $objUsers = \Contao\Database::getInstance()
                         ->prepare("SELECT 
                                         COUNT(" . $llmo . ") as ANZ 
                                     FROM 
@@ -284,7 +280,7 @@ class LastLogin extends \Frontend
                         ->execute(
                             1,
                             1,
-                            time() - (int) $GLOBALS['TL_CONFIG']['sessionTimeout'],
+                            (time() - $timeout),
                             'FE_USER_AUTH',
                             mktime(0, 0, 0, (int) date("m"), (int) date("d"), (int) date("Y")),
                             'FE_USER_AUTH'
