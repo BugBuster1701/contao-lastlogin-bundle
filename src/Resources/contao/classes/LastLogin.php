@@ -2,17 +2,14 @@
 
 declare(strict_types=1);
 
-/**
- * This file is part of a BugBuster Contao Bundle
+/*
+ * This file is part of a BugBuster Contao Bundle (Resources\contao)
  *
- * @copyright  Glen Langer 2022 <https://contao.ninja>
+ * @copyright  Glen Langer 2023 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
+ * @package    Lastlogin
  * @license    LGPL-3.0-or-later
- * @see	       https://github.com/BugBuster1701/contao-lastlogin-bundle
- */
-
-/**
- * Run in a custom namespace, so the class can be replaced
+ * @see        https://github.com/BugBuster1701/contao-lastlogin-bundle
  */
 
 namespace BugBuster\LastLogin;

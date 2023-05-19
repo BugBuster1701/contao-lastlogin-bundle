@@ -1,5 +1,15 @@
 <?php
 
+$header = <<<EOF
+This file is part of a BugBuster Contao Bundle (Resources\contao)
+
+@copyright  Glen Langer 2023 <http://contao.ninja>
+@author     Glen Langer (BugBuster)
+@package    Lastlogin
+@license    LGPL-3.0-or-later
+@see        https://github.com/BugBuster1701/contao-lastlogin-bundle
+EOF;
+
 $finder = PhpCsFixer\Finder::create()
     ->exclude('languages')
     ->exclude('templates')
@@ -23,6 +33,7 @@ return $config
         'escape_implicit_backslashes' => true,
         'function_declaration' => true,
         'function_typehint_space' => true,
+        'header_comment' => ['header' => $header],
         'linebreak_after_opening_tag' => true,
         'lowercase_cast' => true,
         'lowercase_keywords' => true,
