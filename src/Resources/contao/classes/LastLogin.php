@@ -107,7 +107,7 @@ class LastLogin extends \Contao\Frontend
         // {{cache_last_login::zero::d.m.Y}}
         if (\Contao\System::getContainer()->get('contao.security.token_checker')->hasFrontendUser()) 
         {
-            $this->import('FrontendUser', 'User');
+            $this->import('\Contao\FrontendUser', 'User');
             $strDate = '';
             $zero = false;
             $strDateFormat = $GLOBALS['TL_CONFIG']['dateFormat'];
@@ -159,7 +159,7 @@ class LastLogin extends \Contao\Frontend
             } //$this->User->id
         } //FE_USER_LOGGED_IN
 
-        return false;
+        return '';
     }
 
     /**
