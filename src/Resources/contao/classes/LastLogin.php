@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of a BugBuster Contao Bundle (Resources\contao)
  *
- * @copyright  Glen Langer 2023 <http://contao.ninja>
+ * @copyright  Glen Langer 2024 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Lastlogin
  * @license    LGPL-3.0-or-later
@@ -52,7 +52,7 @@ class LastLogin extends \Contao\Frontend
      * LastLogin Replace Insert-Tag Main Methode
      * @param  string $strTag
      * @return mixed  false: no correct tag
-     *                       int: return value of the Insert-Tag
+     *                int: return value of the Insert-Tag
      */
     public function ReplaceInsertTagsLastLogin($strTag)
     {
