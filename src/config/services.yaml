@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autoconfigure: true
+
+    bugbuster_lastlogin.insert_tag.lastlogin:
+        class: BugBuster\LastloginBundle\InsertTag\LastloginInsertTag
+        arguments:
+            - '@contao.security.token_checker'
+            - '@security.helper'
+            - '@database_connection'
+            - '@contao.framework'

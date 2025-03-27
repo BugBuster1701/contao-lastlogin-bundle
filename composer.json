@@ -26,7 +26,7 @@
 	},
 	"require": {
 		"php": ">=8.3.0,<8.5.0",
-		"contao/core-bundle": ">=5.4.0,<5.7.0",
+		"contao/core-bundle": ">=5.5.0,<5.7.0",
 		"bugbuster/contao-online-bundle": "^1.4"
 	},
 	"require-dev": {
@@ -36,16 +36,7 @@
 	"autoload": {
 		"psr-4": {
 			"BugBuster\\LastloginBundle\\": "src/"
-		},
-		"classmap": [
-			"src/Resources/contao/"
-		],
-		"exclude-from-classmap": [
-			"src/Resources/contao/config/",
-			"src/Resources/contao/dca/",
-			"src/Resources/contao/languages/",
-			"src/Resources/contao/templates/"
-		]
+		}
 	},
 	"extra": {
 		"contao-manager-plugin": "BugBuster\\LastloginBundle\\ContaoManager\\Plugin"
