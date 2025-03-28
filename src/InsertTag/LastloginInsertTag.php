@@ -164,7 +164,7 @@ class LastloginInsertTag implements InsertTagResolverNestedResolvedInterface
                 tls.instanceof  = :instanceof
             LIMIT 1',
             [
-                'tstamp' => time() - $timeout, 
+                'tstamp' => time() - $timeout,
                 'instanceof' => 'FE_USER_AUTH',
             ],
         );
