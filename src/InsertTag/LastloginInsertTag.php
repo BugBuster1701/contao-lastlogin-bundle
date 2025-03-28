@@ -130,10 +130,10 @@ class LastloginInsertTag implements InsertTagResolverNestedResolvedInterface
     {
         $count = $this->connection->fetchOne(
             'SELECT count(`id`) AS ANZ FROM `tl_member` WHERE `disable` != :disa AND `login` = :logi LIMIT 1',
-            ['disa' => 1],
-            ['disa' => Types::INTEGER],
-            ['logi' => 1],
-            ['logi' => Types::INTEGER],
+            [
+                'disa' => 1,
+                'logi' => 1,
+            ],
         );
 
         return (int) $count;
@@ -163,10 +163,10 @@ class LastloginInsertTag implements InsertTagResolverNestedResolvedInterface
             AND
                 tls.instanceof  = :instanceof
             LIMIT 1',
-            ['tstamp' => time() - $timeout],
-            ['tstamp' => Types::INTEGER],
-            ['instanceof' => 'FE_USER_AUTH'],
-            ['instanceof' => Types::STRING],
+            [
+                'tstamp' => time() - $timeout, 
+                'instanceof' => 'FE_USER_AUTH',
+            ],
         );
 
         if (false === $count) {
@@ -239,16 +239,13 @@ class LastloginInsertTag implements InsertTagResolverNestedResolvedInterface
                         )
                     )
                 ',
-            ['disa' => 1],
-            ['disa' => Types::INTEGER],
-            ['logi' => 1],
-            ['logi' => Types::INTEGER],
-            ['tstamp' => time() - $timeout],
-            ['tstamp' => Types::INTEGER],
-            ['instanceof' => 'FE_USER_AUTH'],
-            ['instanceof' => Types::STRING],
-            ['currentLogin' => mktime(0, 0, 0, (int) date('m'), (int) date('d'), (int) date('Y'))],
-            ['currentLogin' => Types::INTEGER],
+            [
+                'disa' => 1,
+                'logi' => 1,
+                'tstamp' => time() - $timeout,
+                'instanceof' => 'FE_USER_AUTH',
+                'currentLogin' => mktime(0, 0, 0, (int) date('m'), (int) date('d'), (int) date('Y')),
+            ],
         );
 
         $NumberMembersOffline = $count;
