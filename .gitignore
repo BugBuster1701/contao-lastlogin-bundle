@@ -7,3 +7,6 @@ composer.lock
 
 # Transifex
 /.tx/
+
+#ECS
+tools/ecs/vendor/
