@@ -30,8 +30,7 @@
 		"bugbuster/contao-online-bundle": "^1.4"
 	},
 	"require-dev": {
-		"contao/manager-plugin": "^2.3.1",
-		"friendsofphp/php-cs-fixer": "^3.64"
+		"contao/manager-plugin": "^2.3.1"
 	},
 	"autoload": {
 		"psr-4": {
