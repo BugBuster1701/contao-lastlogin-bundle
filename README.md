@@ -32,3 +32,15 @@ __Achtung__:
 * Nutzer von Contao 5.5+, verwenden `^2.0` als Versionsangabe!
 * Nutzer von Contao 5.3.x, verwenden `^1.8` als Versionsangabe!
 * Nutzer von Contao 4.13.x, verwenden `^1.6` als Versionsangabe!
+
+## API changes
+
+### Version 1.* to 2.0
+
+#### Insert-Tags
+The prefix ‘cache_’ is no longer supported. All insert tag outputs are now generally not cached.
+When upgrading from version 1.x to 2.x, the insert tags used must be adapted:
+- cache_last_login => last_login
+- cache_last_login_number_online_members => last_login_number_online_members
+- cache_last_login_number_offline_members => last_login_number_offline_members
+- cache_last_login_number_registered_members => last_login_number_registered_members
