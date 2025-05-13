@@ -9,7 +9,8 @@
 
 ## About
 
-Display the "Last Login" time and "online members" by using Insert-Tags. More details in the manual.
+Display the "Last Login" time and "online members" by using Insert-Tags. More details in the manual.<br>
+If you are upgrading from version 1 to 2, please read the section 'API changes'.
 
 ## Installation
 
