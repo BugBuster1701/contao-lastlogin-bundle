@@ -11,7 +11,7 @@
 
 Display the "Last Login" time and "online members" by using Insert-Tags. More details in the manual.<br>
 If you are upgrading from version 1 to 2, please read the section 'API changes'.<br>
-Detailed manual: [Contao Ninja Docs](https://docs.contao.ninja/books/user-guide_lastlogin)
+Detailed manual (de/en): [Contao Ninja Docs](https://docs.contao.ninja/books/user-guide_lastlogin)
 
 ## Installation
 
