@@ -20,7 +20,7 @@ Installation with Contao-Manager:
 * update the database
 
 __Attention__: 
-* Users of Contao 5.5+, use `^2.0` as version number! 
+* Users of Contao 5.7+, use `^2.0` as version number! 
 * Users of Contao 5.3.x, use `^1.8` as version number! 
 * Users of Contao 4.13.x, use `^1.6` as version number! 
 
@@ -31,7 +31,7 @@ Installation über Contao-Manager
 * Datenbank Update durchführen
 
 __Achtung__: 
-* Nutzer von Contao 5.5+, verwenden `^2.0` als Versionsangabe!
+* Nutzer von Contao 5.7+, verwenden `^2.0` als Versionsangabe!
 * Nutzer von Contao 5.3.x, verwenden `^1.8` als Versionsangabe!
 * Nutzer von Contao 4.13.x, verwenden `^1.6` als Versionsangabe!
 
